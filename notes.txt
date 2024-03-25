@@ -1,0 +1,9 @@
+SAMPLE SCENE DESCRIPTION
+
+'The ego vehicle proceeds through the intersection, continuing along the current roadway.'
+
+
+THE TRAIN FILE CONTAINS A LIST OF SCENE IDs
+IN the example provided we have just 2 scenes
+
+TEST DATA IS EXTRACTED FROM TRAINING DATA

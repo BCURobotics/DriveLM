@@ -5,7 +5,7 @@ import re
 
 def extract_data(root_path, save_path):
 
-    with open(root_path, 'r') as f :#, \    
+    with open(root_path, 'r') as f :
         train_file = json.load(f)
 
     test_data=dict()
@@ -57,7 +57,7 @@ def extract_data(root_path, save_path):
                 answer = qa['A']
 
                 # according to the classes to select the corresponding question
-                flag = 1
+                flag = 1 # what does this flag mean?
                 for cl in classes:
                     if cl.lower() not in answer.lower():
                         flag = 0
@@ -134,8 +134,8 @@ def extract_data(root_path, save_path):
 
 if __name__ == "__main__":
     # extract the data from the training json file
-    root_path = "data/train_sample.json"
-    save_path = "test.json"
-    extract_data(root_path, save_path)
+    root_path = "challenge/data/train_sample.json" # <- this defines the path to the training data json that has the question answer pairs
+    save_path = "test.json" # <- target directory for the data to be saved
+    extract_data(root_path, save_path) # extract data operation to create dataset by linking question answer
 
     
