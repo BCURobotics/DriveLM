@@ -15,7 +15,7 @@
 [![](https://img.shields.io/badge/Project%20Page-8A2BE2)](https://opendrivelab.com/DriveLM/)
 [![License: Apache2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](#licenseandcitation)
 [![arXiv](https://img.shields.io/badge/arXiv-2312.14150-b31b1b.svg)](https://arxiv.org/abs/2312.14150)
-[![](https://img.shields.io/badge/Latest%20release-v1.0-yellow)](#gettingstarted)
+[![](https://img.shields.io/badge/Latest%20release-v1.1-yellow)](#gettingstarted)
 [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-DriveLM-ffc107?color=ffc107&logoColor=white)](https://huggingface.co/spaces/AGC2024/driving-with-language-2024)
 
 <!-- <a href="https://opendrivelab.github.io/DriveLM" target="_blank">
@@ -136,6 +136,7 @@ DriveLM attempts to address some of the challenges faced by the community.
 
 ### News <a name="news"></a>
 
+- **`[2024/03/25]`** Challenge test server is online and the test questions are released. [Chekc it out!](https://github.com/OpenDriveLab/DriveLM/tree/main/challenge)
 - **`[2024/02/29]`** Challenge repo release. Baseline, data and submission format, evaluation pipeline. [Have a look!](https://github.com/OpenDriveLab/DriveLM/tree/main/challenge)
 - **`[2023/08/25]`** DriveLM-nuScenes demo released.
 - **`[2023/12/22]`** DriveLM-nuScenes full `v1.0` and [paper](https://arxiv.org/abs/2312.14150) released.
@@ -147,10 +148,10 @@ DriveLM attempts to address some of the challenges faced by the community.
 - [ ] DriveLM-Data
   - [x] DriveLM-nuScenes
   - [ ] DriveLM-CARLA
-- [ ] DriveLM-Metrics
-  - [ ] GPT-score
+- [x] DriveLM-Metrics
+  - [x] GPT-score
 - [ ] DriveLM-Agent
-  - [ ] Inference code on DriveLM-nuScenes
+  - [x] Inference code on DriveLM-nuScenes
   - [ ] Inference code on DriveLM-CARLA
 
 <p align="right">(<a href="#top">back to top</a>)</p>

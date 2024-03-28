@@ -1,5 +1,7 @@
 ### TL;DR
 * The purpose of this folder is to facilitate our CVPR 2024 challenge. Initially, we will use a small subset of training data (**demo train** in the following text) as an illustrative example, demonstrating how to obtain the **test data format** and the submission format, how to train the baseline and infer the baseline, and go through the evaluation pipeline. 
+  
+* Thrilled to announce that the test server is online and the test questions are release! Check `DriveLM-nuScenes version-1.1 val` and [How-to-submit](#submit-to-test-server).
 
 * For the purpose of the new **test data format**, it is essential that our primary intention is to create a specific test data format preventing possible cheating. 
 
@@ -24,11 +26,11 @@ ln -s /path/to/your/nuscenes llama_adapter_v2_multimodal7b/data/
 
 3. If you do not have the nuscenes dataset, but you want to run through the whole DriveLM dataset. Then you need to Download the following dataset.
 
-| nuScenes subset images | DriveLM-nuScenes version-1.1|
-|:-------:|:-------:|
-| [Google Drive](https://drive.google.com/file/d/1DeosPGYeM2gXSChjMODGsQChZyYDmaUz/view?usp=sharing) | [Google Drive](https://drive.google.com/file/d/1CvTPwChKvfnvrZ1Wr0ZNVqtibkkNeGgt/view?usp=sharing) |
-|[Baidu Netdisk](https://pan.baidu.com/s/11xvxPzUY5xTIsJQrYFogqg?pwd=mk95)|[Baidu Netdisk](https://pan.baidu.com/s/1Vojg73jviguki0yvAB6nUg?pwd=73s8) |
-|[HuggingFace](https://huggingface.co/datasets/OpenDriveLab/DriveLM/blob/main/drivelm_nus_imgs_train.zip)|[HuggingFace](https://huggingface.co/datasets/OpenDriveLab/DriveLM/blob/main/v1_1_train_nus.json)
+| nuScenes subset images | DriveLM-nuScenes version-1.1| DriveLM-nuScenes version-1.1 val |
+|:-------:|:-------:|:------:|
+| [Google Drive](https://drive.google.com/file/d/1DeosPGYeM2gXSChjMODGsQChZyYDmaUz/view?usp=sharing) | [Google Drive](https://drive.google.com/file/d/1CvTPwChKvfnvrZ1Wr0ZNVqtibkkNeGgt/view?usp=sharing) | [Google Drive](https://drive.google.com/file/d/1fsVP7jOpvChcpoXVdypaZ4HREX1gA7As/view?usp=sharing) |
+|[Baidu Netdisk](https://pan.baidu.com/s/11xvxPzUY5xTIsJQrYFogqg?pwd=mk95)|[Baidu Netdisk](https://pan.baidu.com/s/1Vojg73jviguki0yvAB6nUg?pwd=73s8) | [Baidu Netdisk](https://pan.baidu.com/s/1p01Szh5QTtSAzSXdhLCTwQ?pwd=h9hi) |
+|[HuggingFace](https://huggingface.co/datasets/OpenDriveLab/DriveLM/blob/main/drivelm_nus_imgs_train.zip)|[HuggingFace](https://huggingface.co/datasets/OpenDriveLab/DriveLM/blob/main/v1_1_train_nus.json) |[HuggingFace](https://huggingface.co/datasets/OpenDriveLab/DriveLM/blob/main/v1_1_val_nus_q_only.json) |
 
 Please follow the instructions below.
 ```bash
@@ -58,8 +60,6 @@ Extract fundamental question-and-answer (QA) pairs from the training dataset.
 ```bash
 # The following script assumes that you download the train data json under ./challenge/data
 # make sure you are under ./challenge
-mkdir data
-mv train_sample.json data/train_sample.json
 python extract_data.py
 ```
 Then we will get the test.json in the challenge folder. The example of test.json can be found in [test.json](test.json)
@@ -149,7 +149,7 @@ Then we will get the [output.json](output.json), which are the predicted answers
 We implement diverse evaluation metrics tailored to different question types as mentioned [above](https://github.com/OpenDriveLab/DriveLM-private/blob/test/challenge/README.md?plain=1#L19).
 
 ### Setup
-Install the language-evaluation package
+Install the language-evaluation package.
 
 Following [https://github.com/bckim92/language-evaluation](https://github.com/bckim92/language-evaluation) (skip the FIRST STEP if related libraries are already installed)
 
@@ -201,9 +201,10 @@ final score:  0.3240234750718823
 
 ### Submission Instruction
 
-The competition server is held on [Hugging Face space](https://huggingface.co/spaces/AGC2024/driving-with-language-2024).
+The competition server is held on [Hugging Face space](https://huggingface.co/spaces/AGC2024/driving-with-language-2024). Our test server is now open for submission!
 
-Please evaluate `output.json` locally first before submitting to test server!
+
+Please infer your model on the `DriveLM-nuScenes version-1.1 val`(this is our test question and we will **NOT** release their GT answer) and get your output as `output.json`. You need to evaluate `output.json` locally first before submitting to test server!
 
 1. Prepare your result
 
@@ -236,15 +237,50 @@ Please evaluate `output.json` locally first before submitting to test server!
 
     <font color=red> Note: you can make up to 3 submissions per day. </font>
 
-
 ### How to View My Submissions?
 
-You can check the evaluation status of your submissions in the `My submissions` tab on the left panel of the competition space. the `Status` column should show `PROCESSING`. Wait for it to become `SUCCESS`, and your public score will be shown.
+You can check the status of your submissions in the `My submissions` tab of the competition space.
 
-You can select a submission and click `Update Selected Submissions` on the bottom to update its evaluation status to the private leaderboard.
+Please refer to [these slides](https://docs.google.com/presentation/d/1bicxoR_L3t05p5xw-qZM0Dj5KdJhjynqLM0Rck0qdcI/edit?usp=sharing) for explaination of each score.
 
-### Will My Evaluation Results Be Visible to Others?
+You can select a submission and click `Update Selected Submissions` on the bottom to update its evaluation status to the private leaderboard. Please note that <font color=red>public score and private score are exactly the same</font> in our case. So please ignore the descriptions in `My Submissions` tab. 
+
+## FAQ
+
+### The `New Submission` page shows `Invalid Token` when I click `Submit`, what should I do?
+
+This means you are no longer logged in to the current competition space, or the space has automatically logged you out due to inactivity (more than a day). 
+
+Please refresh the page, click `Login with Hugging Face` at the bottom of the left panel, and resubmit.
+
+### Can I Submit Without Making My Submission Public?
+
+Of course. The competition space accepts Hugging Face private models. in fact, we recommend participants to submit as private models to keep their submissions private.
+
+### Will My Evaluation Status Be Visible to Others?
 
 The public leaderboard will be open with the best results of all teams about a week before the competition ends.
 
-**Note:** you can change your team name even after the competition ends. Thus, if you want to stay anonymous on the public leaderboard, you can first use a temporary team name and change it to your real team name after the competition ends.
+**Note that** you can change your team name even after the competition ends. Thus, if you want to stay anonymous on the public leaderboard, you can first use a temporary team name and change it to your real team name after the competition ends.
+
+### My evaluation status shows `Failed`, how can I get the error message?
+
+First, make sure your submission is in the correct format as in [submission preparation](#submission-preparation) and you upload the correct Hugging Face **model** link (in the format of `Username/model`) in `New Submission`.
+
+If you confirm that the submission format is correct, please contact the challenge host [Chonghao Sima](mailto:simachonghao@pjlab.org.cn) via email. Please include the **Submission ID** of the corresponding submission in the email. The Submission ID can be found in the `My Submissions` tab.
+
+```
+Email Subject:
+[CVPR DRIVELM] Failed submission - {Submission ID}
+Body:
+  Your Name: {}
+  Team Name: {}
+  Institution / Company: {}
+  Email: {}
+```
+
+### I could not visit `My Submissions` page, what should I do?
+
+Chances are that you are not logged in to the current competition space. 
+
+Please refresh the page, click `Login with Hugging Face` at the bottom of the left panel.
